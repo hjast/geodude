@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="SBT: net.liftweb:lift-webkit_2.10:2.5-RC5">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/net.liftweb/lift-webkit_2.10/jars/lift-webkit_2.10-2.5-RC5.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.ivy2/cache/net.liftweb/lift-webkit_2.10/docs/lift-webkit_2.10-2.5-RC5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/net.liftweb/lift-webkit_2.10/srcs/lift-webkit_2.10-2.5-RC5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
