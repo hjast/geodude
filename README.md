@@ -13,7 +13,7 @@ Usage:
 Add to sbt or maven
 
 ```scala
-"libraryDependencies += "com.guthub.hjast" %% "geodude" % "0.1.0"
+"libraryDependencies += "com.github.hjast" % "geodude_2.10" % "0.2.0"
 ```
 
 or for maven
@@ -22,7 +22,7 @@ or for maven
 <dependency>
   <groupId>com.github.hjast</groupId>
   <artifactId>geodude_2.10</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
 </dependency>"
 ```
 
