@@ -29,7 +29,7 @@ case class InMemoryCachedGeocoding(geo: Geocoding) extends CachedBackedGeocoding
 
   def cache(loc: Location): Unit = cache.update(loc.name, loc)
 
-  def get(address: String): Option[Location] = cache.get(address)
+  def get(address: String): Box[Location] = cache.get(address)
 }
 
 

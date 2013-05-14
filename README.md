@@ -6,8 +6,25 @@ I created a cached geocoder with different backend implementations
 
 ## goals
 
-- To let you use geocoders without writing wrappers and allowing you to switch them out. Also
+To let you use geocoders without writing wrappers and allowing you to switch them out. Also
 giving you a cache so you never don't need to geocode twice.
+
+Usage:
+Add to sbt or maven
+
+```scala
+"libraryDependencies += "com.guthub.hjast" %% "geodude" % "0.1.0"
+```
+
+or for maven
+
+```xml
+<dependency>
+  <groupId>com.github.hjast</groupId>
+  <artifactId>geodude_2.10</artifactId>
+  <version>0.1.0</version>
+</dependency>"
+```
 
 ## usage
 
@@ -16,8 +33,8 @@ Simple usage
 ```scala
 import geodude._
 val str = googleMaps.location("690 Prospect PL, Brooklyn, NY")
-                    .map(loc => "%s is at %s lat and %s lng" format(loc.name, loc.lat, loc.lng))
-                    .getOrElse("Geocoding could not find address")
+					  .map(loc => "%s is at %s lat and %s lng" format(loc.name, loc.lat, loc.lng))
+					  .getOrElse("Geocoding could not find address")
 
 println(str)
 ```
@@ -31,7 +48,7 @@ val geo = InMemoryCachedGeocoding(googleMaps)
 /** This only hits the geocoding once **/
 val latLngs = (for {
   r <-  0 until 10
-  loc <- geo.get("690 Prospect Pl, Brooklyn, NY")
+  loc <- geo.location("690 Prospect Pl, Brooklyn, NY")
 } yield {
    println("%s is at %s lat and %s lng" format(loc.name, loc.lat, loc.lng))
    loc
@@ -50,9 +67,9 @@ googleMaps.location("Some crazier address").openOr(openStreetMaps.location("690 
 
 ## todos
 
-Switch to dispatch reboot + make these futures.
-Add in support for a generic caching layer (??).
-Add in support for other map operations.
-Document the mongo backing.
-Write tests
+* Switch to dispatch reboot + make these futures.
+* Add in support for a generic caching layer (??).
+* Add in support for other map operations.
+* Document the mongo backing.
+* Write tests
 

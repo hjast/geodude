@@ -2,38 +2,18 @@
 import sbtrelease._
 import ReleaseStateTransformations._
 
-import geodudeBuild._
+import GeodudeBuild._
+import Dependencies._
 
 name := "geodude"
 
-organization := "hjast"
+organization := "com.github.hjast"
 
-version := "0.1.0-SNAPSHOT"
+version := "0.2.0"
 
 scalaVersion := "2.10.0"
 
-// crossScalaVersions := Seq("2.10.0.RC1", "2.10.0.RC2")
-
-publishMavenStyle := true
-
-publishTo <<= version { (v: String) =>
-  if (v.trim.endsWith("SNAPSHOT"))
-    Some(Resolver.file("local-snapshots", file("artifacts/snapshots.era7.com")))
-  else
-    Some(Resolver.file("local-releases", file("artifacts/releases.era7.com")))
-}
-
-resolvers ++= Seq (
-                    "Typesafe Releases"   at "http://repo.typesafe.com/typesafe/releases",
-                    "Sonatype Releases"   at "https://oss.sonatype.org/content/repositories/releases",
-                    "Sonatype Snapshots"  at "https://oss.sonatype.org/content/repositories/snapshots",
-                    "Era7 Releases"       at "http://releases.era7.com.s3.amazonaws.com",
-                    "Era7 Snapshots"      at "http://snapshots.era7.com.s3.amazonaws.com"
-                  )
-
-libraryDependencies ++= Seq (
-                              "com.chuusai" %% "shapeless" % "1.2.3"
-                            )
+resolvers += Resolver.sonatypeRepo("releases")
 
 scalacOptions ++= Seq(
                       "-feature",
@@ -42,3 +22,42 @@ scalacOptions ++= Seq(
                       "-deprecation",
                       "-unchecked"
                     )
+		   	
+publishMavenStyle := true
+					
+publishTo <<= version { (v: String) =>
+  val nexus = "https://oss.sonatype.org/"
+  if (v.trim.endsWith("SNAPSHOT"))
+    Some("snapshots" at nexus + "content/repositories/snapshots")
+  else
+    Some("releases" at "https://oss.sonatype.org/service/local/staging/deploy/maven2")
+}
+
+publishArtifact in Test := false
+
+pomIncludeRepository := { x => false }
+
+licenses := Seq("BSD-style" -> url("http://www.opensource.org/licenses/bsd-license.php"))
+
+homepage := Some(url("http://github.com/hjast/geodude"))
+			
+pomExtra := (
+  <parent>
+      <groupId>org.sonatype.oss</groupId>
+      <artifactId>oss-parent</artifactId>
+      <version>7</version>
+    </parent>
+  <scm>
+    <url>git@github.com:hjast/geodude.git</url>
+    <connection>scm:git:git@github.com:hjast/geodude.git</connection>
+  </scm>
+  <developers>
+    <developer>
+      <id>reubendoetsch</id>
+      <name>Reuben Doetsch</name>
+      <url>http://reubendoetsch.com</url>
+    </developer>
+  </developers>)
+
+					
+					
