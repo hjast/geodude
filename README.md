@@ -1,4 +1,4 @@
-# geodude -- **scala-geocoder** #
+# geodude - **scala-geocoder** #
 
 Geocode, a scala wrapper for reverse geocoding. This was born because I needed to bring in a lot of
 data and tag it with lat / lng. In testing / etc.. I keep hitting limits and/or API's were down so
